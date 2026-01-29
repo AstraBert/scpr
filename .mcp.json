@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "web-scraping": {
+      "type": "stdio",
+      "command": "scpr",
+      "args": [
+        "mcp"
+      ],
+      "env": {}
+    }
+  }
+}
