@@ -41,7 +41,7 @@ func ScraperImpl(url, output, logLevel string, parallel, maxDepth int, recursive
 		c.OnHTML("a[href]", func(e *colly.HTMLElement) {
 			link := e.Attr("href")
 			logger.Debug("Found link in the current page", "link", link)
-			e.Request.Visit(link)
+			_ = e.Request.Visit(link)
 		})
 	}
 
@@ -75,7 +75,10 @@ func ScraperImpl(url, output, logLevel string, parallel, maxDepth int, recursive
 		}
 	})
 
-	c.Visit(url)
+	err := c.Visit(url)
+	if err != nil {
+		return nil, err
+	}
 	c.Wait()
 	return paths.getFiles(), nil
 }

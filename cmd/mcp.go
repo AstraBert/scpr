@@ -9,12 +9,12 @@ import (
 )
 
 type ScrapeParams struct {
-	Url            string   `json:"url" jsonschema:"required,description=URL of the web page to scrape"`
-	Recursive      bool     `json:"recursive" jsonschema:"description=Whether or not to scrape the pages recursively (scrape a page and all the pages linked to it). Only works if a list of allowed domains is passed"`
-	AllowedDomains []string `json:"allowed" jsonschema:"description=Allowed domains (required for recursive scraping)"`
-	MaxDepth       int      `json:"max" jsonschema:"description=Maximum depth of linked pages to scrape. Should default to 1 (scrapes only the original page)"`
-	Parallel       int      `json:"parallel" jsonschema:"description=Maximum number of threads for parallel scraping. Should default to 1"`
-	Output         string   `json:"output" jsonschema:"required,description=Output folder to save the markdown files to"`
+	Url            string   `json:"url" jsonschema:"URL of the web page to scrape"`
+	Recursive      bool     `json:"recursive" jsonschema:"Whether or not to scrape the pages recursively (scrape a page and all the pages linked to it). Only works if a list of allowed domains is passed"`
+	AllowedDomains []string `json:"allowed" jsonschema:"Allowed domains (required for recursive scraping)"`
+	MaxDepth       int      `json:"max" jsonschema:"Maximum depth of linked pages to scrape. Should default to 1 (scrapes only the original page)"`
+	Parallel       int      `json:"parallel" jsonschema:"Maximum number of threads for parallel scraping. Should default to 1"`
+	Output         string   `json:"output" jsonschema:"Output folder to save the markdown files to"`
 }
 
 func ScprMcp(ctx context.Context, req *mcp.CallToolRequest, args ScrapeParams) (*mcp.CallToolResult, any, error) {
