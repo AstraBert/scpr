@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"strings"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
@@ -26,7 +27,13 @@ func ScprMcp(ctx context.Context, req *mcp.CallToolRequest, args ScrapeParams) (
 			},
 		}, nil, nil
 	}
-	contents := []mcp.Content{&mcp.TextContent{Text: fmt.Sprintf("Page content for %s:\n\n```md\n%s\n```", args.Url, res)}}
+	contents := []mcp.Content{}
+	if len(res) > 0 {
+		contents = append(contents, &mcp.TextContent{Text: fmt.Sprintf("Scraping results saved in the following files:\n- %s", strings.Join(res, "\n- "))})
+	} else {
+		contents = append(contents, &mcp.TextContent{Text: "No result was produced by the scraping operation"})
+	}
+
 	return &mcp.CallToolResult{
 		Content: contents,
 	}, nil, nil
