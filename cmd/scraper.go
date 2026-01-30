@@ -48,7 +48,7 @@ func ScraperImpl(url, output, logLevel string, parallel, maxDepth int, recursive
 	c.OnResponse(func(r *colly.Response) {
 		bodyStr := string(r.Body)
 		flnm := r.FileName()
-		logger.Info("Obtained raw file name", "file_name", flnm)
+		logger.Debug("Obtained raw file name", "file_name", flnm)
 		if flnm == "" || strings.HasPrefix(flnm, ".") {
 			now := time.Now().UnixMilli()
 			flnm = strconv.Itoa(int(now)) + ".md"
@@ -61,17 +61,17 @@ func ScraperImpl(url, output, logLevel string, parallel, maxDepth int, recursive
 		if r.StatusCode >= 200 && r.StatusCode <= 299 {
 			markdown, err := htmltomarkdown.ConvertString(bodyStr)
 			if err != nil {
-				logger.Info("An error occurred while converting HTML content to markdown", "url", r.Request.URL.String(), "error", err.Error())
+				logger.Error("An error occurred while converting HTML content to markdown", "url", r.Request.URL.String(), "error", err.Error())
 				return
 			}
 			err = os.WriteFile(path, []byte(markdown), 0644)
 			if err != nil {
-				logger.Info("An error occurred while writing the output file", "url", r.Request.URL.String(), "error", err.Error(), "output_file", path)
+				logger.Error("An error occurred while writing the output file", "url", r.Request.URL.String(), "error", err.Error(), "output_file", path)
 				return
 			}
 			paths.append(path)
 		} else {
-			logger.Info("The page you attempted to scrape returned a non-OK response", "url", r.Request.URL.String(), "status_code", r.StatusCode, "response_body", bodyStr)
+			logger.Error("The page you attempted to scrape returned a non-OK response", "url", r.Request.URL.String(), "status_code", r.StatusCode, "response_body", bodyStr)
 		}
 	})
 

@@ -12,21 +12,50 @@ Install with Go (v1.24+ required):
 go install github.com/AstraBert/scpr
 ```
 
+Here's the updated usage section:
+
 ## Usage
 
-**As a CLI tool**
+### As a CLI tool
+
+Basic usage (scrape a single page):
 
 ```bash
-scpr --url https://example.com
+scpr --url https://example.com --output ./scraped
 ```
 
-This will print markdown text to stdout, which you can easily redirect to a file:
+This will scrape the page and save it as a markdown file in the `./scraped` folder.
+
+**Recursive scraping**
+
+To scrape a page and all linked pages within the same domain:
 
 ```bash
-scpr --url https://example.com > example.md
+scpr --url https://example.com --output ./scraped --recursive --allowed example.com --max 3
 ```
 
-**As a stdio MCP server**
+**Parallel scraping**
+
+Speed up recursive scraping with multiple threads:
+
+```bash
+scpr --url https://example.com --output ./scraped --recursive --allowed example.com --max 2 --parallel 5
+```
+
+**Additional options**
+
+- `--log` - Set logging level (info, debug, warn, error)
+- `--max` - Maximum depth of pages to follow (default: 1)
+- `--parallel` - Number of concurrent threads (default: 1)
+- `--allowed` - Allowed domains for recursive scraping (can be specified multiple times)
+
+For more details, run:
+
+```bash
+scpr --help
+```
+
+### As a stdio MCP server
 
 Start the MCP server with:
 
@@ -52,10 +81,3 @@ And configure it in agents using:
 ```
 
 > _The above JSON snippet is reported as used by Claude Code, adapt it to your agent before using it_
-
-## Roadmap
-
-- [ ] Handle retries
-- [ ] Add recursive scraping based on allowed domains
-- [ ] Add an NPM-installable version
-- [ ] Add comprehensive testing
