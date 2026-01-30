@@ -1,0 +1,34 @@
+{
+  "name": "@cle-does-things/scpr",
+  "version": "0.1.0",
+  "description": "Simple and intuitive CLI tool and MCP server to perform web scraping operations.",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "golang-npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AstraBert/scpr.git"
+  },
+  "keywords": [
+    "web-scraping",
+    "crawling",
+    "mcp",
+    "skills"
+  ],
+  "author": "Clelia Astra Bertelli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AstraBert/scpr/issues"
+  },
+  "homepage": "https://github.com/AstraBert/scpr#readme",
+  "dependencies": {
+    "golang-npm": "^0.0.6"
+  },
+  "goBinary": {
+    "name": "scpr",
+    "path": "./bin",
+    "url": "https://github.com/AstraBert/scpr/releases/download/v{{version}}/scpr_{{version}}_{{platform}}_{{arch}}.tar.gz"
+  }
+}

@@ -64,11 +64,12 @@ func TestScraperDomainNotAllowed(t *testing.T) {
 	maxDepth := 2
 	parallel := 2
 	recursive := true
-	results, err := ScraperImpl(url, output, "info", parallel, maxDepth, recursive, allowedDomains)
-	if err != nil {
-		t.Fatalf("An error occurred: %s", err.Error())
-	}
-	if len(results) != 0 {
-		t.Fatalf("Expected to retrieve 0 results, got %d", len(results))
+	_, err := ScraperImpl(url, output, "info", parallel, maxDepth, recursive, allowedDomains)
+	if err == nil {
+		t.Fatal("An error occurred was expected, none occurred")
+	} else {
+		if err.Error() != "Forbidden domain" {
+			t.Fatalf("Expecting 'Forbidden domain' as error message, got %s", err.Error())
+		}
 	}
 }
