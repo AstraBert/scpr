@@ -1,0 +1,9 @@
+builds:
+  - binary: scpr
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm64

@@ -27,9 +27,7 @@ func validateAllowedDomains(domains []string) []string {
 	polishedDomains := make([]string, 0, len(domains))
 	pattern := regexp.MustCompile(`^([A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,6}$`)
 	for _, domain := range domains {
-		if strings.HasPrefix(domain, "https://") {
-			domain = strings.TrimLeft(domain, "https://")
-		}
+		domain = strings.TrimPrefix(domain, "https://")
 		if pattern.MatchString(domain) {
 			polishedDomains = append(polishedDomains, domain)
 		}
