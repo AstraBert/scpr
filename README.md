@@ -1,6 +1,6 @@
 # scpr
 
-`scpr` is a simple and straightforward webscraping CLI tool made to scrape page as markdown content, and mainly developed to be used by coding agents either as an [MCP server](./.mcp.json) or as a [skill](.claude/skills/web-scraping/SKILL.md).
+`scpr` is a simple and straightforward webscraping CLI tool made to scrape page as markdown content, and developed to be used both by humans and by coding agents (either as an [MCP server](./.mcp.json) or as a [skill](.claude/skills/web-scraping/SKILL.md)).
 
 `scpr` is written in Go and based on [colly](https://github.com/gocolly/colly) for web scraping and [`html-to-markdown`](https://github.com/JohannesKaufmann/html-to-markdown) for converting HTML pages to markdown.
 
@@ -12,7 +12,11 @@ Install with Go (v1.24+ required):
 go install github.com/AstraBert/scpr
 ```
 
-Here's the updated usage section:
+Install with NPM:
+
+```bash
+npm install @cle-does-things/scpr
+```
 
 ## Usage
 
@@ -81,3 +85,11 @@ And configure it in agents using:
 ```
 
 > _The above JSON snippet is reported as used by Claude Code, adapt it to your agent before using it_
+
+## Contributing
+
+Contributions are welcome! Please read the [Contributing Guide](./CONTRIBUTING.md) to get started.
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE)
