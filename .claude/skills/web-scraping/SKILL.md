@@ -42,4 +42,10 @@ For more details, run:
 scpr --help
 ```
 
-Once you are done with scraping, you should scan the output folder to find the content the user asked you for.
+Once you are done with scraping, you should scan the output folder to find the content the user asked you for, here is an example flow:
+
+```bash
+scpr --url https://example.com --output ./scraped --recursive --allowed example.com --max 2
+cd ./scraped
+grep -r "pattern of interest"
+```
