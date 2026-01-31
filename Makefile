@@ -1,5 +1,5 @@
 BIN="./bin"
-BIN_NAME="gar"
+BIN_NAME="scpr"
 MAIN_PKG="."
 SRC=$(shell find . -name "*.go")
 
