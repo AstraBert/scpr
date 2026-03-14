@@ -18,6 +18,26 @@ Install with NPM:
 npm install @cle-does-things/scpr
 ```
 
+### Extra instructions for Windows installation
+
+If you are on Windows, `scpr` might not be available right after global installation with `npm`. In that case, you might need to take extra steps:
+
+1. Find where the `node` executable is stored on your machine:
+
+```bash
+Get-Command node
+```
+
+This will print the directory where `node.exe` is stored: `scpr` will be installed at `.\bin\scpr.exe` in that folder.
+
+> [!NOTE]
+>
+> _If you are using `nvm` for Windows, `node.exe` will be at `C:\Users\nvm4w\nodejs`_
+
+2. Add `{NODE_FOLDER}\bin` (in the case of nvm: `C:\Users\nvm4w\nodejs\bin`) to the PATH environment variables. Follow [this guide](https://www.java.com/en/download/help/path.html) for instructions on how to set PATH env variables.
+3. Restart your computer
+4. Test `scpr --help` from your terminal. The execution might be challenged by your antivirus, but, since the executable does not contain any harmful code, the antivirus will eventually allow it 
+
 ## Usage
 
 ### As a CLI tool
